@@ -139,12 +139,15 @@ class Factura {
         
         $conexion->ejecutar($sql);
         $conexion->cerrar();
+        
     }
 
 
     public function calcular_datos_facutura($Administrador_idAdministrador, $Apartamento_torre, $Apartamento_apartamento,
     $fecha_cobro, $porcentaje_interes, $pago_sin_interes){
         
+        date_default_timezone_set("America/Bogota"); 
+
         $apartamento = new ApartamentoDAO();
 
         $conexion = new Conexion();
@@ -156,10 +159,11 @@ class Factura {
         $fila = $conexion->registro();
         $saldo_apartamento = $fila[0]; 
 
-      
-
         $fecha_cobro_dt = new DateTime($fecha_cobro);
+        $fecha_cobro_dt->setTime(0, 0, 0);
         $hoy = new DateTime();
+        $hoy->setTime(0, 0, 0);
+
         $diferencia = $fecha_cobro_dt->diff($hoy);
         $dias_de_interes = $diferencia->days;
 

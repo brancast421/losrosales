@@ -8,7 +8,7 @@ include("encabezado.php");
 include("Nav.php");
 
 $mensaje = "";
-
+date_default_timezone_set("America/Bogota"); 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["torre"], $_POST["apartamento"], $_POST["valor"])) {
     require_once("persistencia/Conexion.php");
     require_once("persistencia/ApartamentoDAO.php");
